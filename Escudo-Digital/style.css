@@ -1,0 +1,496 @@
+html {
+  scroll-behavior: smooth;
+}
+
+#hero {
+  position: relative;
+}
+
+#hero .hero-content {
+  width: 100%;
+  overflow: visible;
+  text-align: left;
+}
+
+#hero *:not(.scroll-indicator) {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#hero .hero-content p,
+#hero .hero-content h2 {
+  width: 100%;
+  max-width: 48rem;
+  text-align: left;
+}
+
+#hero .hero-content h2 {
+  line-height: 1.5;
+}
+
+@media (min-width: 1024px) {
+  #hero .hero-content {
+    min-height: 100vh;
+  }
+
+  #hero .mockup-phone {
+    max-height: 78vh;
+  }
+}
+
+.marca-texto {
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+  animation: riscarMarcaTexto 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.marca-amarelo {
+  background-image: linear-gradient(120deg, #fcd34d 0%, #fcd34d 100%);
+  animation-delay: 0.35s; /* Começa logo após o texto aparecer */
+}
+
+.marca-verde {
+  background-image: linear-gradient(120deg, #6ee7b7 0%, #6ee7b7 100%);
+  animation-delay: 0.95s; /* Risca a segunda palavra logo depois da primeira */
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.scroll-arrow {
+  width: 12px;
+  height: 12px;
+
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+
+  transform: rotate(45deg);
+  animation: arrow-bounce 1.5s infinite;
+}
+
+/* Transições entre as sessões de contexto */
+main > section[id^="contexto"] {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+  isolation: isolate;
+  text-align: left;
+}
+
+main > section[id^="contexto"] .stats {
+  max-width: 100%;
+}
+
+main > section[id^="contexto"] .stat {
+  text-align: left;
+}
+
+#contexto-1 > .container {
+  position: relative;
+}
+
+.line-chart {
+  width: 100%;
+  min-width: 0;
+}
+
+.line-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chart-grid {
+  stroke: currentColor;
+  opacity: 0.12;
+  stroke-dasharray: 4 5;
+}
+
+.chart-label {
+  fill: currentColor;
+  opacity: 0.72;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.chart-point {
+  filter: drop-shadow(0 2px 3px oklch(0% 0 0 / 18%));
+}
+
+.chart-value {
+  font-size: 16px;
+  font-weight: 800;
+  paint-order: stroke;
+  stroke: oklch(98% 0 0);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.chart-value-warning {
+  fill: oklch(62% 0.17 83);
+}
+
+.chart-value-error {
+  fill: oklch(57% 0.22 27);
+}
+
+.chart-crosshair {
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  opacity: 0.45;
+}
+
+.tooltip-grafico {
+  position: absolute;
+  z-index: 20;
+  width: max-content;
+  max-width: min(15rem, calc(100% - 1rem));
+  top: -7.25rem;
+  border-radius: 0.75rem;
+  background: oklch(28% 0.03 255);
+  color: oklch(98% 0 0);
+  box-shadow: 0 0.75rem 2rem oklch(0% 0 0 / 22%);
+  padding: 0.75rem;
+  font-size: 0.75rem;
+  pointer-events: none;
+}
+
+.tooltip-grafico strong,
+.tooltip-grafico span {
+  display: block;
+}
+
+.tooltip-grafico strong {
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+}
+
+#contexto-2 > .container > article {
+  width: 100%;
+  max-width: 32rem;
+  justify-self: end;
+}
+
+.pie-chart {
+  width: min(100%, 220px);
+  margin-inline: auto;
+}
+
+.pie-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pie-percent {
+  dominant-baseline: middle;
+  font-size: 3.1rem;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+}
+
+.pie-caption {
+  fill: currentColor;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.tooltip-grafico span {
+  margin-top: 0.2rem;
+}
+
+.legenda-ponto {
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.65rem;
+  margin-right: 0.25rem;
+  border-radius: 999px;
+}
+
+.legenda-warning {
+  background: oklch(79% 0.16 83);
+}
+
+.legenda-error {
+  background: oklch(57% 0.22 27);
+}
+
+@media (min-width: 1024px) {
+  main > section[id^="contexto-1"] > .container,
+  main > section[id^="contexto-2"] > .container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(2rem, 6vw, 6rem);
+    align-items: center;
+  }
+
+  #contexto-1 > .container > header,
+  #contexto-1 > .container > p {
+    grid-column: 2;
+  }
+
+  #contexto-1 > .container > header {
+    grid-row: 1;
+  }
+
+  #contexto-1 > .container > p {
+    grid-row: 2;
+  }
+
+  #contexto-1 > .container > article {
+    width: 100%;
+    height: fit-content;
+    align-self: center;
+    overflow: visible;
+  }
+
+  #contexto-2 > .container > header,
+  #contexto-2 > .container > p {
+    grid-column: 1;
+  }
+
+  #contexto-2 > .container > header {
+    grid-row: 1;
+  }
+
+  #contexto-2 > .container > p {
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 1023px) {
+  #hero {
+    min-height: 100svh;
+    min-height: 100dvh;
+  }
+
+  #hero .scroll-indicator {
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  #hero .hero-content {
+    justify-content: flex-start;
+  }
+
+  #hero .hero-content > div:first-child {
+    max-height: calc(100dvh - 5rem);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #grafico-mundial .chart-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+
+  #grafico-mundial .chart-point {
+    opacity: 0;
+    transform: scale(0);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  #grafico-mundial.chart-animado .chart-line {
+    animation: chartLineDraw 1800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  #grafico-mundial.chart-animado .chart-point {
+    animation: chartPointIn 450ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  #grafico-mundial.chart-animado .chart-point-0 { animation-delay: 100ms; }
+  #grafico-mundial.chart-animado .chart-point-1 { animation-delay: 450ms; }
+  #grafico-mundial.chart-animado .chart-point-2 { animation-delay: 800ms; }
+  #grafico-mundial.chart-animado .chart-point-3 { animation-delay: 1150ms; }
+  #grafico-mundial.chart-animado .chart-point-4 { animation-delay: 1500ms; }
+
+  #contexto-2 .pie-animado .pie-progress {
+    animation:
+      pieReveal 1500ms cubic-bezier(0.22, 1, 0.36, 1) 150ms both,
+      pieColor 1500ms cubic-bezier(0.22, 1, 0.36, 1) 150ms both;
+  }
+
+  .contexto-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .contexto-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #hero .mockup-phone-display .chat,
+  #hero .lg\:hidden .chat {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  #hero .mockup-phone-display .alert,
+  #hero .lg\:hidden .alert {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  #hero .hero-content > div:first-child > * {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+
+  #hero .mockup-phone {
+    opacity: 0;
+    transform: translateX(36px) scale(0.82);
+  }
+
+  body.page-loaded #hero .hero-content > div:first-child > * {
+    animation: heroFadeLeft 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  body.page-loaded #hero .hero-content > div:first-child > h1 {
+    animation-delay: 100ms;
+  }
+
+  body.page-loaded #hero .hero-content > div:first-child > h2 {
+    animation-delay: 350ms;
+  }
+
+  body.page-loaded #hero .hero-content > div:first-child > p {
+    animation-delay: 600ms;
+  }
+
+  body.page-loaded #hero .hero-content > div:first-child > p:last-child {
+    animation-delay: 750ms;
+  }
+
+  body.page-loaded #hero .mockup-phone {
+    animation: heroFadeRight 900ms cubic-bezier(0.22, 1, 0.36, 1) 500ms forwards;
+  }
+
+  body.page-loaded #hero .mockup-phone-display .chat,
+  body.page-loaded #hero .lg\:hidden .chat {
+    animation: phoneMessageIn 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  body.page-loaded #hero .mockup-phone-display .chat:nth-child(1),
+  body.page-loaded #hero .lg\:hidden .chat:nth-child(1) {
+    animation-delay: 1500ms;
+  }
+
+  body.page-loaded #hero .mockup-phone-display .chat:nth-child(2),
+  body.page-loaded #hero .lg\:hidden .chat:nth-child(2) {
+    animation-delay: 2150ms;
+  }
+
+  body.page-loaded #hero .mockup-phone-display .chat:nth-child(3),
+  body.page-loaded #hero .lg\:hidden .chat:nth-child(3) {
+    animation-delay: 2800ms;
+  }
+
+  body.page-loaded #hero .mockup-phone-display .alert,
+  body.page-loaded #hero .lg\:hidden .alert {
+    animation: phoneMessageIn 500ms cubic-bezier(0.22, 1, 0.36, 1) 3450ms
+      forwards;
+  }
+}
+
+@keyframes pieColor {
+  0% {
+    stroke: oklch(88% 0.14 95);
+  }
+  35% {
+    stroke: oklch(82% 0.16 85);
+  }
+  65% {
+    stroke: oklch(72% 0.18 70);
+  }
+  82% {
+    stroke: oklch(64% 0.20 45);
+  }
+  100% {
+    stroke: #dc2626;
+  }
+}
+
+@keyframes pieReveal {
+  from {
+    stroke-dasharray: 0 520;
+  }
+}
+
+@keyframes chartLineDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes chartPointIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes riscarMarcaTexto {
+  0% {
+    background-size: 0% 100%;
+  }
+
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes arrow-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(45deg);
+  }
+
+  50% {
+    transform: translateY(8px) rotate(45deg);
+  }
+}
+
+@keyframes phoneMessageIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroFadeRight {
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(0.82);
+  }
+}
